@@ -33,7 +33,7 @@ export const useAuth = (isLogIn: boolean) => {
         event.preventDefault()
         console.log("Sending request...")
         
-        const url = isLogIn ? `${fetch_url}/token/` : `${fetch_url}/users/create/`
+        const url = isLogIn ? `${fetch_url}/token/` : `${fetch_url}/user/create/`
         const data = isLogIn ? {email:state.email, password: state.password} : {...state}
         const isValidPwd = isValidPassword(state.password)
 
@@ -45,26 +45,47 @@ export const useAuth = (isLogIn: boolean) => {
         setLoading(true)
         
 
-        axios.post(url, {...data})
-        .then((res): JSONResponse<AuthJSONResponse> => {console.log(res); return res.data})
+        axios.post(url, {...data}, {
+            headers:{
+                "Content-Type": 'application/json'
+            }
+        })
+        .then((res): JSONResponse<NewAuthJSONResponse> => {console.log(res); return res.data})
         .then(json => {
             if (json.success){
-                console.log(json)
-                let auth = getPayloadFromToken(json.data?.access)
-                localStorage.setItem('access', json.data?.access)
-                localStorage.setItem('refresh', json.data?.refresh)
-                setLoading(false)
-                console.log(auth)
-                dispatch(updateUser({
-                    status: {isLoggedIn: true},
-                    data:{
-                        id: auth.id,
-                        first_name: auth.first_name,
-                        last_name: auth.last_name,
-                        email: auth.email,
-                        paymentMethods: json.data.paymentMethods
-                    }
-                }))
+                if (isLogIn){
+                    console.log(json)
+                    let auth = getPayloadFromToken(json.data?.access)
+                    localStorage.setItem('access', json.data?.access)
+                    localStorage.setItem('refresh', json.data?.refresh)
+                    setLoading(false)
+                    console.log(auth)
+                    dispatch(updateUser({
+                        status: {isLoggedIn: true},
+                        data:{
+                            id: auth.id,
+                            first_name: auth.first_name,
+                            last_name: auth.last_name,
+                            email: auth.email,
+                            paymentMethods: json.data.paymentMethods
+                        }
+                    }))
+                }
+                else{
+                    localStorage.setItem('access', json.data?.token.access)
+                    localStorage.setItem('refresh', json.data?.token.refresh)
+                    setLoading(false)
+                    dispatch(updateUser({
+                        status: { isLoggedIn: true },
+                        data:{
+                            id: json.data.id,
+                            first_name: json.data.first_name,
+                            last_name: json.data.last_name,
+                            email: json.data.email,
+                            paymentMethods: []
+                        }
+                    }))
+                }
                 navigate('/')
             }
             else {
@@ -73,8 +94,9 @@ export const useAuth = (isLogIn: boolean) => {
             }
         })
         .catch((e) => {
-            const error: ErrorAuth = e.response.data
-            setError(error.error)
+            // const error: ErrorAuth = e.response.data
+            console.log(e)
+            
             setLoading(false)
         })
     }
