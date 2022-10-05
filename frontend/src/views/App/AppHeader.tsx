@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHideOnScroll } from '../../hooks/useHideOnScroll'
-import { Box, SlideFade, Heading, Button, Spacer, Flex } from '@chakra-ui/react'
+import { Box, SlideFade, Heading, Button, Spacer, Flex, ButtonGroup } from '@chakra-ui/react'
 import { useUser } from '../../Store/hooks/useUser'
 import { useAppDispatch } from '../../Store/hooks/hooks'
 import { getExtraUserInfo } from '../../Store/thunks/user.thunks'
@@ -37,7 +37,12 @@ function AppHeader() {
 
         <Spacer />
 
-        <Button onClick={() => navigate('/app/user')} rightIcon={<SettingsIcon />} >{userData.first_name}</Button>
+        <ButtonGroup variant='ghost'>
+          <Button onClick={() => navigate('/app/categories')} >Categories</Button>
+
+          <Button onClick={() => navigate('/app/user')} rightIcon={<SettingsIcon />} >{userData.first_name}</Button>
+        </ButtonGroup>
+
         </Flex>
       </Box>
   )

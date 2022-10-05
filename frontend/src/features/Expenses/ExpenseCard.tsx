@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Flex, Spacer, Collapse, useDisclosure, Tag, Center, IconButton, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
+import { Box, Text, Flex, Spacer, Tag, Center, IconButton, Menu, MenuButton, MenuList, MenuItem, AccordionItem, AccordionButton, AccordionPanel } from '@chakra-ui/react'
 import MoreIcon from '../../Assets/MoreIcon'
 // import EditExpense from './EditExpense'
 import { withModal } from '../../Containers/withModal'
@@ -12,45 +12,33 @@ function ExpenseCard(props: IExpense) {
 
   const { id, name, amount, date, categories, paymentMethod } = props
 
-  const { isOpen, onToggle, onClose } = useDisclosure()
-
-  React.useEffect(() => {
-    return () => {
-      if (isOpen) onClose()
-    }
-  })
-
   return (
-    <Box>
-      <Box 
-        minW={100}
-        w='350px'
-        borderWidth='1px'
-        borderRadius='lg'
-        p={3}
-        onClick={onToggle}
-        cursor='pointer'
-        boxShadow={isOpen ? 'lg' : ''}
-      >
-          <Flex>
+    <AccordionItem isFocusable={false}
+      minW={100}
+      w='350px'
+      borderWidth='1px'
+      borderRadius='lg'
+      my={2} 
+    >
+      <AccordionButton _expanded={{ fontWeight:'bold', fontSize:'lg' }}>
+        <Box flex={1} maxW={300} >
+          <Flex alignItems='center'>
 
-              <Text>
-                  {name}
-              </Text>
+            <Text textAlign={'left'}>
+              {name}
+            </Text>
 
-              <Spacer />
+            <Spacer />
 
-              <Text textAlign={'left'}>
-                  ${amount.toFixed(2)}
-              </Text>
+            <Text textAlign={'left'} ml={1}>
+                ${amount.toFixed(2)}
+            </Text>
           </Flex>
-      </Box>
+        </Box>
+      </AccordionButton>
 
-      <Collapse in={isOpen}>
-        <Box
-          borderWidth='0px 0px 1px 0px'
-          p={2}  
-        >
+      <AccordionPanel mt={-2} >
+        <Box px={2}>
 
           <Flex alignItems={'center'}>
 
@@ -120,9 +108,9 @@ function ExpenseCard(props: IExpense) {
           </Center>
 
         </Box>
-      </Collapse>
+      </AccordionPanel>
 
-    </Box>
+    </AccordionItem>
   )
 }
 
