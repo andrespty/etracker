@@ -4,6 +4,7 @@ import MoreIcon from '../../Assets/MoreIcon'
 import EditExpense from './EditExpense'
 import { withModal } from '../../Containers/withModal'
 import DeleteExpense from './DeleteExpense'
+import { formatDate } from '../../utils/formatDate'
 
 const MenuItemWithModal = withModal(MenuItem)
 
@@ -39,7 +40,7 @@ function ExpenseCard(props: IExpense) {
 
               <Spacer />
 
-              <Text>
+              <Text textAlign={'left'}>
                   ${amount.toFixed(2)}
               </Text>
           </Flex>
@@ -93,7 +94,7 @@ function ExpenseCard(props: IExpense) {
             <Spacer /> 
 
             <Text>
-              {date.toString()}
+              {formatDate(date.toString())}
             </Text>
           </Flex>
 

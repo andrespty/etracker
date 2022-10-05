@@ -4,6 +4,7 @@ import AppHeader from './AppHeader'
 import { Routes, Route } from 'react-router-dom'
 import Expenses from '../../features/Expenses/Expenses'
 import UserSettings from '../../features/User/UserSettings'
+import Categories from '../../features/Categories/Categories'
 
 function MainApp() {
   return (
@@ -13,6 +14,7 @@ function MainApp() {
         <Routes>
 
             <Route path='user' element={<UserSettings />}/>
+            <Route path='categories' element={<Categories />}/>
             <Route index element={<Expenses />}/>
 
         </Routes>
