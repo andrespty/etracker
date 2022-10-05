@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./views/LandingPage/LandingPage";
 import LogIn from "./views/Auth/LogIn";
 import SignUp from "./views/Auth/SignUp";
 import PrivateRoute from "./Containers/PrivateRoute";

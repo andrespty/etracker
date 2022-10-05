@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Text, Flex, Spacer, Collapse, useDisclosure, Tag, Center, IconButton, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 import MoreIcon from '../../Assets/MoreIcon'
-import EditExpense from './EditExpense'
+// import EditExpense from './EditExpense'
 import { withModal } from '../../Containers/withModal'
 import DeleteExpense from './DeleteExpense'
 import { formatDate } from '../../utils/formatDate'

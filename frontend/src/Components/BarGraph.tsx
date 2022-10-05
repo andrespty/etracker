@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box } from '@chakra-ui/react';
 import { Bar } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
 import {
