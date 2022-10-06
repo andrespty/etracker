@@ -83,7 +83,7 @@ function Categories() {
                 <YearPicker onChange={(year:number) => setState({year})} />
             </Center>
             
-            <Box w={'50%'} >
+            <Box w={{base:'95%', md:'50%'}} >
 
                 <BarGraph data={data()} options={options} />
            
