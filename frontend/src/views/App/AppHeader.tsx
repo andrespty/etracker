@@ -7,7 +7,6 @@ import { getExtraUserInfo } from '../../Store/thunks/user.thunks'
 import { useNavigate } from 'react-router-dom'
 import { SettingsIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { withDrawer } from '../../Containers/withDrawer'
-import Settings from 'react-multi-date-picker/plugins/settings'
 
 const IconButtonWithModal = withDrawer(IconButton)
 
@@ -56,6 +55,8 @@ function AppHeader() {
             />
           :
             <ButtonGroup variant='ghost'>
+              <Button onClick={() => navigate('/app')} >Home</Button>
+              
               <Button onClick={() => navigate('/app/categories')} >Categories</Button>
 
               <Button onClick={() => navigate('/app/user')} rightIcon={<SettingsIcon />} >{userData.first_name}</Button>
@@ -69,30 +70,64 @@ function AppHeader() {
 
 export default AppHeader
 
-const MenuBody = () => {
+const MenuBody = ({ onClose }: {onClose?: () => void}) => {
 
   const navigate = useNavigate()
+  const handle_nav = (str:string) => {
+    navigate(str)
+    if (onClose){
+      onClose()
+    }
+  }
 
   return (
-    <Flex flexDir={'column'}>
+    <Flex flexDir={'column'}  position='fixed' bottom={20} gap={10}>
       {/* <Button onClick={() => navigate('/app/categories')} >Categories</Button>
 
       <Button onClick={() => navigate('/app/user')} rightIcon={<SettingsIcon />} >Settings</Button> */}
 
       <Text 
-        onClick={() => navigate('/app/categories')} 
+        onClick={() => handle_nav('/app')} 
         cursor='pointer'
+        fontSize={'4xl'}
+        _hover={{
+          color: 'gray.500'
+        }}
+        transition={'color ease 0.2s'}
+      >
+        Home
+      </Text>
+
+      <Text 
+        onClick={() => handle_nav('/app/categories')} 
+        cursor='pointer'
+        fontSize={'4xl'}
+        _hover={{
+          color: 'gray.500'
+        }}
+        transition={'color ease 0.2s'}
       >
         Categories
       </Text>
 
-      <Text 
-        onClick={() => navigate('/app/user')}
-        cursor='pointer'
-      >
+      <Flex 
+          onClick={() => handle_nav('/app/user')}
+          cursor='pointer'
+          fontSize={'4xl'}
+          _hover={{
+            color: 'gray.500',
+            // transition: 'color ease 0.2s'
+          }}
+          transition={'color ease 0.2s'}
+          flexDir={'row'} 
+          alignItems={'center'}
+          gap={1}
+        >
         <SettingsIcon />
-        Settings
-      </Text>
+        <Text>
+          Settings
+        </Text>
+      </Flex>
 
     </Flex>
   )

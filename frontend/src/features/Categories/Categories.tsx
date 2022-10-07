@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Center, Spacer, Text, Flex } from '@chakra-ui/react'
+import { Box, Center, Spacer, Text, Flex, Divider } from '@chakra-ui/react'
 import BarGraph from '../../Components/BarGraph'
 import { useCategories } from '../../Store/hooks/useCategories'
 import { useExpenses } from '../../Store/hooks/useExpenses'
@@ -106,16 +106,18 @@ function Categories() {
                                     {category.name}
                                 </Text>
                                 <Spacer/>
+                                <Text 
+                                    fontSize={'xs'}
+                                    color='gray.500'
+                                    mr={1.5}
+                                >
+                                    {((data().datasets[0].data[key]/expenses.total)*100).toFixed(0)}%
+                                </Text>
+
                                 <Text
                                     mr={3}
                                 >
                                     {`$${data().datasets[0].data[key].toFixed(2)}`}
-                                </Text>
-                                <Text 
-                                    fontSize={'sm'}
-                                    color='gray.500'
-                                >
-                                    {((data().datasets[0].data[key]/expenses.total)*100).toFixed(0)}% 
                                 </Text>
                             </Flex>
                         </Box>
