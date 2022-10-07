@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Heading, Center, Button } from '@chakra-ui/react'
+import { Box, Heading, Center, Button, Accordion } from '@chakra-ui/react'
 import RegularList from '../../Containers/RegularList'
 import ExpenseCard from './ExpenseCard'
 import MonthPicker from '../../Components/MonthPicker'
@@ -49,13 +49,14 @@ function Expenses() {
 
                 </Center>
 
+                <Accordion allowToggle>
                 <RegularList 
                     items={expenses.expenses}
                     resourceName='expense'
                     renderItem={(expense, key) => (
-                        <Box key={key} my={2}>
+                        // <Box key={key} my={2}>
                             <ExpenseCard {...expense} />
-                        </Box>
+                        // </Box>
                     )}
                     emptyComponent={() => (
                         <Box mt={10}>
@@ -68,6 +69,7 @@ function Expenses() {
                         </Box> 
                     )}
                 />
+                </Accordion>
 
             </Box>
             <AddExpenseButton 
