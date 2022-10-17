@@ -5,9 +5,9 @@ import SignUp from "./views/Auth/SignUp";
 import PrivateRoute from "./Containers/PrivateRoute";
 import MainApp from "./views/App/MainApp";
 
-export const fetch_url = 'http://127.0.0.1:8000'
-// export const fetch_url = 'http://expensesapi.andrespty.com'
-// export const fetch_url = 'http://3.129.200.60:8000'
+// export const fetch_url = 'http://127.0.0.1:8000'
+export const fetch_url = 'http://expensesapi.andrespty.com'
+
 
 
 function App() {

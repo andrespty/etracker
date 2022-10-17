@@ -22,7 +22,7 @@ class User(AbstractUser):
 class Category(models.Model):
     name        = models.CharField(max_length=32)
     creator     = models.ForeignKey(User, on_delete=models.CASCADE, related_name='categories')
-    bgColor     = models.CharField(max_length=10, default='#C5F1F9')
+    bgColor     = models.CharField(max_length=10, default='#68D391')
     color       = models.CharField(max_length=10, default='#0B6F83')
     
     def __str__(self):

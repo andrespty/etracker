@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Center, Spacer, Text, Flex, Divider } from '@chakra-ui/react'
+import { Box, Center, Spacer, Text, Flex } from '@chakra-ui/react'
 import BarGraph from '../../Components/BarGraph'
 import { useCategories } from '../../Store/hooks/useCategories'
 import { useExpenses } from '../../Store/hooks/useExpenses'

@@ -24,7 +24,7 @@ function Expenses() {
             flexDir='column'
             
         >
-            <Box>
+            <Box  mb={16}>
 
                 <Center gap={3}>
                     <MonthPicker onChange={(month:number) => setState({month})} />
